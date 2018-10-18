@@ -23,7 +23,8 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-    output_data.append(their_history[-1])
+    if len(their_history) > 3:
+        output_data.append(their_history[-1])
     
     strategy = SVC()
     strategy.fit = (input_data, output_data)
@@ -42,7 +43,7 @@ def move(my_history, their_history, my_score, their_score):
         return 'c'
 
     if len(their_history) > 3:
-        input_data.append([their_history[-3],their_history[-2],their_history[-1]]
+        input_data.append(their_history[-3],their_history[-2],their_history[-1])
     
     
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
