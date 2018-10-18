@@ -6,8 +6,8 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' 
-strategy_name = 'The name the team gives to this strategy'
+team_name = 'Rythan' 
+strategy_name = 'Almost always betray'
 strategy_description = 'When history is before 90, betray if other team betrays, else collude. After if score is still 0, poke.'
     
 def move(my_history, their_history, my_score, their_score):

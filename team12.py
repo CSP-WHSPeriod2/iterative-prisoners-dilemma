@@ -7,8 +7,8 @@
 ####
 
 team_name = 'team_IslandRoyale' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+strategy_name = 'Check for majority'
+strategy_description = 'Returns the most often occuring result of the last 3'
 def checker(their_history, my_history, my_score):
             if my_score >= -999:
                 if their_history[-1] + their_history[-2] + their_history[-3] == 'cbc' or\
@@ -28,7 +28,7 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-    if len(their_history)==0 or 1 or 2:
+    if len(their_history)<=2:
         return 'b'
     else:
         return checker(their_history, my_history, my_score)

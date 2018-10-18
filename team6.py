@@ -7,8 +7,8 @@ import random
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'Exposed' The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'If neccessary''The name the team gives to this strategy'
+team_name = 'Exposed' # Only 10 chars displayed.
+strategy_name = 'If neccessary'
 strategy_description = 'How does this strategy decide?'
 
 retaliation = ['b', 'b', 'c', 'c', 'b']
@@ -16,30 +16,65 @@ always_betray = ['b', 'b','b','b','b']
 always_collude = ['c', 'c', 'c', 'c', 'c']
 og_pattern = ['b','b','c','c','b']
 strategies = [retaliation, always_betray, always_collude, og_pattern]
-def move(my_history, their_history):
+def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
     are ints.
     Make my move.
     Returns 'c' or 'b'. 
     '''
-    if my_history[0]:
+    if len(my_history)==0:
         return 'b'
-    if my_history[1]:
+    if len(my_history)==1:
         return 'b'
-    if my_history[2]:
+    if len(my_history)==2:
         return 'c'
-    if my_history[3]:
+    if len(my_history)==3:
         return 'c'
-    if my_history[4]:
+    if len(my_history)==4:
         return 'b'
     if their_history == ['c', 'b', 'b', 'c', 'c']:
-        return retaliation
+        if(len(my_history)%5==1):
+            return retaliation[0]
+        if(len(my_history)%5==2):
+            return retaliation[1]
+        if(len(my_history)%5==3):
+            return retaliation[2]
+        if(len(my_history)%5==4):
+            return retaliation[3]
+        if(len(my_history)%5==0):
+            return retaliation[4]
     if their_history == ['c', 'c', 'c', 'c', 'c']:
-        return always_betray
+        return 'b'
     if their_history == ['b', 'b', 'b', 'b', 'b']:
-        return always_collude
+        return 'c'
     else:
-        random.choice(strategies)
+        strat = random.choice(strategies)
+        if strat == retaliation:
+            if(len(my_history)%5==1):
+                return retaliation[0]
+            if(len(my_history)%5==2):
+                return retaliation[1]
+            if(len(my_history)%5==3):
+                return retaliation[2]
+            if(len(my_history)%5==4):
+                return retaliation[3]
+            if(len(my_history)%5==0):
+                return retaliation[4]
+        elif strat == always_betray: 
+            return 'b'
+        elif strat == always_collude: 
+            return 'c'
+        else: 
+            if(len(my_history)%5==1):
+                return og_pattern[0]
+            if(len(my_history)%5==2):
+                return og_pattern[1]
+            if(len(my_history)%5==3):
+                return og_pattern[2]
+            if(len(my_history)%5==4):
+                return og_pattern[3]
+            if(len(my_history)%5==0):
+                return og_pattern[4]
         
         
 

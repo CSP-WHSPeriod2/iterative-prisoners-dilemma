@@ -11,7 +11,7 @@ strategy_name = "You're going down"
 strategy_description = 'To cooperate unless they betray us. Once they betray 20 times or we are down 5000 point, \
 we betray the rest of the game.'
     
-def move(my_history, their_history, my_score, their_score, collectiveScore):
+def move(my_history, their_history, my_score, their_score):
     numberOfBetrays = 0
     if(len(my_history) == 0):
         return 'c'
@@ -23,7 +23,6 @@ def move(my_history, their_history, my_score, their_score, collectiveScore):
             return 'c'
         elif (numberOfBetrays == 20 or my_score == -5000):
             return 'b'
-    print (collectiveScore)
 
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.
     # their_history: a string of the same length as history, possibly empty. 

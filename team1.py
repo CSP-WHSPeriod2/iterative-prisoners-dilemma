@@ -1,4 +1,3 @@
-from sklearn.svm import SVC
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -23,27 +22,19 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-    if len(their_history) > 3:
-        output_data.append(their_history[-1])
-    
-    strategy = SVC()
-    strategy.fit = (input_data, output_data)
-    
-    enemy_choice = strategy.predict([[their_history[-3], their_history[-2], their_history[-1]]])[0]
-    
-    if enemy_choice == 'c' and int(their_score) >= int(my_score) :
+    if len(their_history)<=3:
         return 'b'
-    elif enemy_choice == 'b' and int(their_score) >= int(my_score):
-        return 'b'
-    elif enemy_choice == 'c' and int(their_score) < int(my_score):
-        return 'c'
-    elif enemy_choice == 'b' and int(their_score) < int(my_score) :
-        return 'b'
-    else:
-        return 'c'
 
     if len(their_history) > 3:
-        input_data.append(their_history[-3],their_history[-2],their_history[-1])
+        if their_score < my_score:
+            if their_history[-3] == 'b' or their_history[-2] == 'b' or their_history[-1] == 'b':
+                return 'b'
+            else:
+                return 'c'
+        elif their_score > my_score:
+            return 'b'
+
+    
     
     
     # my_history: a string with one letter (c or b) per round that has been played with this opponent.

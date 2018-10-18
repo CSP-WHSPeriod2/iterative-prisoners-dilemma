@@ -12,7 +12,7 @@ strategy_description = 'How does this strategy decide?'
         
 def reaction_time(their_history):
     alwaysCollude = True
-    if "b" in their_history:
+    if 'b' in their_history:
         alwaysCollude = False
         return their_history[-1]
     while alwaysCollude == True:
@@ -53,4 +53,4 @@ def move(my_history, their_history, my_score, their_score):
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
 
-    return reaction_time
+    return passive_agressive(my_score, their_score)

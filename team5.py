@@ -69,7 +69,7 @@ def bodds(my_history, their_history, my_score, their_score):
     global g
     n+=1
     l=g[n]+1
-    g=g+l
+    g=g+[l]
     if random.randint(1,100) in g:
         return 'b'
     else:
@@ -83,13 +83,13 @@ def move(my_history, their_history, my_score, their_score):
     Returns 'c' or 'b'. 
     '''
     if(len(my_history) <= 10):
-        if(len(my_history == 0)):
+        if(len(my_history) == 0):
             return 'b'
         return ygolohcysp(my_history, their_history, my_score, their_score)
     if(my_score >= their_score):
         return ygolohcysp(my_history, their_history, my_score, their_score) 
     elif(len(my_history)>=50):
-        return bodds()
+        return bodds(my_history, their_history, my_score, their_score)
     else:
         return alg_test(my_history,their_history, my_score, their_score)
         
